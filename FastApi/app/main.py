@@ -3,6 +3,7 @@ from app.services.products import get_all_products, add_product, remove_product,
 from app.schema.product import Product,ProductUpdate
 from uuid import uuid4, UUID
 from datetime import datetime
+from typing import List,Dict
 
 app=FastAPI()
 
@@ -52,7 +53,7 @@ def root():
 #         "products":products}
 
 #limit and pagination
-@app.get('/products')
+@app.get('/products',response_model=Dict)
 def list_products(name:str=Query(None, min_length=3, max_length=50,description="Search by product name(case insensitive)"),sort_by_price:bool=Query(default=False, description="Sort products by price"),order:str=Query(default="asc", description="Sort order when sort_by_price=true (asc,desc)"),limit:int=Query(default=5,ge=1,le=100,description="Number of items"),offset:int=Query(default=0,ge=0,description="Pagination offset")):
 
     products=get_all_products()
@@ -72,7 +73,7 @@ def list_products(name:str=Query(None, min_length=3, max_length=50,description="
         "products":products}
 
 #get product by id
-@app.get('/products/{product_id}')
+@app.get('/products/{product_id}',response_model=Dict)
 def get_product_by_id(product_id:str=Path(...,min_length=36, max_length=36, description="The ID of the product to retrieve")):
     products=get_all_products()
     for product in products:
