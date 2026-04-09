@@ -40,4 +40,4 @@ response=client.models.generate_content(
     contents="What's the temperature in Delhi on 2026-04-10?"
 )
 
-print(response.text) 
+print(response.text)
