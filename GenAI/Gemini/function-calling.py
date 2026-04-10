@@ -24,7 +24,7 @@ def get_current_weather(location,targetDate):
     headers = {
 	"x-rapidapi-key": "9d01bdfe74msh4606261d5e9c83ap194472jsn37fff811dd1b",
 	"x-rapidapi-host": "ai-weather-by-meteosource.p.rapidapi.com"
-}
+    }
 
     response = requests.get(url, headers=headers, params=querystring)
 
