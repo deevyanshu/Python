@@ -26,11 +26,11 @@ llm=ChatGoogleGenerativeAI(
 
 llm_with_tools=llm.bind_tools(tools)
 
-response=llm_with_tools.invoke("hello")
+response=llm_with_tools.invoke("What is weather in indore")
 
 print(response.tool_calls)
 
-for tool_call in response.tool_calls:
-    selected_tool={"get_weather": get_weather}[tool_call['name']]
-    tool_ouput=selected_tool.invoke(tool_call['args'])
-    print(f"Tool Output: {tool_ouput}")
+# for tool_call in response.tool_calls:
+#     selected_tool={"get_weather": get_weather}[tool_call['name']]
+#     tool_ouput=selected_tool.invoke(tool_call['args'])
+#     print(f"Tool Output: {tool_ouput}")
